@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "MODULO VUELOS - AEROLINEAS";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+<script src="~/Funciones/Aerolineas.js"></script>
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Aerolineas</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalAerolinea" onclick="clearTextBox_AE()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar aerolinea</button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-striped bg-pale-info text-dark" id="aerolineaTabla">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Aerolinea</th>
+                            <th>Puntualidad</th>
+                            <th>Calidad de servicio</th>
+                            <th>Gestion de reclamos</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento estados de vuelos -->
+            <div class="modal center-modal fade" id="modalAerolinea" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Aerolineas</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" id="AerolineaID" placeholder="ID" disabled="disabled" />
+                                        <div class="form-group">
+                                            <label for="Nombre" class="col-form-label">Aerolinea: </label>
+                                            <input type="text" class="form-control" id="Nombre" placeholder="Aerolinea" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Puntualidad" class="col-form-label">Puntualidad: </label>
+                                            <input type="text" class="form-control" id="Puntualidad" placeholder="Puntualidad aerolinea puntuacion" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Calidad_S" class="col-form-label">Calidad servicio: </label>
+                                            <input type="text" class="form-control" id="Calidad_S" placeholder="Calidad servicio puntuacion" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Gestion_R" class="col-form-label">Gestion de reclamos: </label>
+                                            <input type="text" class="form-control" id="Gestion_R" placeholder="Gestion de reclamos puntuacion" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-primary" id="btnAdd_AE" onclick="return Add_Aerolinea();">Agregar</button>
+                            <button type="button" class="btn bg-info" id="btnUpdate_AE" onclick="Update_Aerolinea();">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

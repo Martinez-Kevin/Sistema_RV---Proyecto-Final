@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "MODULO PAIS | CIUDAD - CIUDAD";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+<script src="~/Funciones/Ciudad.js"></script>
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Ciudad</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalCiudad" onclick="clearTextBox_C()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar ciudad</button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-striped bg-pale-info text-dark" id="ciudadTabla">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Ciudad</th>
+                            <th style="display:none;">ID_Pais</th>
+                            <th>Pais</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento estados de vuelos -->
+            <div class="modal center-modal fade" id="modalCiudad" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Ciudad</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" id="CiudadID" placeholder="ID" disabled="disabled" />
+                                        <div class="form-group">
+                                            <label for="Ciudad" class="col-form-label">Ciudad: </label>
+                                            <input type="text" class="form-control" id="Ciudad" placeholder="Estado" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Pais" class="col-form-label">Pais: </label>
+                                            @Html.DropDownList("Pais", null, "---Selecione el pais-----", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-primary" id="btnAdd_C" onclick="return Add_Ciudad();">Agregar</button>
+                            <button type="button" class="btn bg-info" id="btnUpdate_C" onclick="Update_Ciudad();">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

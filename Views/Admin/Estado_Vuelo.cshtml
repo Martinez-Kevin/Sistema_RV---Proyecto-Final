@@ -1,0 +1,73 @@
+﻿@model Sistema_RV.Models.Estado_Vuelo
+@{
+    ViewBag.Title = "MODULO VUELOS - ESTADO VUELO";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+<script src="~/Funciones/Estado_Vuelo.js"></script>
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Estado Vuelos</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalEstadoVuelo" onclick="clearTextBox_EST()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar estado</button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-striped bg-pale-info text-dark" id="estadoVueloTabla">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento estados de vuelos -->
+            <div class="modal center-modal fade" id="modalEstadoVuelo" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Estado de vuelos</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" id="EstadoID" placeholder="ID" disabled="disabled"/>
+                                        <div class="form-group">
+                                            <label for="Estado" class="col-form-label">Estado: </label>
+                                            <input type="text" class="form-control" id="Estado" placeholder="Estado" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Descrip" class="col-form-label">Descripcion: </label>
+                                            <input type="text" class="form-control" id="Descrip" placeholder="Descripcion" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-primary" id="btnAdd_EV" onclick="return Add_Estado_Vuelo();">Agregar</button>
+                            <button type="button" class="btn bg-info" id="btnUpdate_EV" onclick="Update_Estado_Vuelo();">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

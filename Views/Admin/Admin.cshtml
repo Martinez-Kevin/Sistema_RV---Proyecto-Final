@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "PANEL PRINCIPAL - ADMIN";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="box">
+    <div class="box-body">
+        <h2>Bienvenido/a &nbsp; @HttpContext.Current.Session["Username"].ToString()</h2>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "MODULO PAIS | CIUDAD - PAIS";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+<script src="~/Funciones/Pais.js"></script>
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Pais</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalPais" onclick="clearTextBox_P()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar pais</button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-striped bg-pale-info text-dark" id="paisTabla">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento pais -->
+            <div class="modal center-modal fade" id="modalPais" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Pais</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" id="paisID" placeholder="ID" disabled="disabled" />
+                                        <div class="form-group">
+                                            <label for="Nombre_Pai" class="col-form-label">Nombre: </label>
+                                            <input type="text" class="form-control" id="nombrePais" placeholder="Ingrese el pais" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-primary" id="btnAdd_P" onclick="return Add_Pais();">Agregar</button>
+                            <button type="button" class="btn bg-info" id="btnUpdate_P" onclick="Update_Pais();">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

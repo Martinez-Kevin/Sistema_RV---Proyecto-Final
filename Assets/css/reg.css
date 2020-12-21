@@ -1,0 +1,37 @@
+﻿body {
+    background-image: linear-gradient( 109.6deg, rgba(121,203,202,1) 11.2%, rgba(119,161,211,1) 91.1% );
+}
+
+.register-photo {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+    .register-photo .image-holder {
+        display: table-cell;
+        width: 600px;
+        background: url('../Img/Home/airport_registrar.png');
+        background-size: cover;
+    }
+
+    .register-photo .form-container {
+        display: table;
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1)
+    }
+
+    .register-photo form {
+        display: table-cell;
+        width: 650px;
+        background-color: #ffffff;
+        padding: 40px 60px;
+        color: #505e6c
+    }
+
+@media (max-width:991px) {
+    .register-photo form {
+        padding: 40px
+    }
+}

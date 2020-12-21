@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "MODULO DE VUELOS - VUELOS";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Funciones/Vuelos_M.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Vuelos</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalVuelos" onclick="clearTextBox_V();"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar vuelo</button>
+            </div>
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped bg-pale-gray text-dark" id="VueloTabla">
+                        <thead class="bg-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Codigo</th>
+                                <th>Avion</th>
+                                <th>Aerolinea</th>
+                                <th>Clase</th>
+                                <th>Asientos</th>
+                                <th>Fecha</th>
+                                <th>Hora salida</th>
+                                <th>Lugar salida</th>
+                                <th>Fecha de llegada</th>
+                                <th>Hora llegada</th>
+                                <th>Pais de destino</th>
+                                <th>Lugar llegada</th>
+                                <th>Duracion</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <!--<th>Usuario</th>-->
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento estados de vuelos -->
+            <div class="modal center-modal fade bs-example-modal-lg" id="modalVuelos" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Vuelos</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Datos del vuelo</a>
+                                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Fecha y destinos</a>
+                                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Monto del vuelo</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="Login_ID" disabled="disabled" value="@HttpContext.Current.Session["LoginID"].ToString()" />
+
+                                                            <label class="form-label text-dark">Codigo Vuelo: </label>
+                                                            <input type="hidden" class="form-control" id="ID_Vuelo" />
+                                                            <input type="text" class="form-control" id="COD_Vuelo" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Aerolinea: </label>
+                                                            @Html.DropDownList("AerolineaV", null, "---Selecione la aerolinea-----", new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Avion: </label>
+                                                            @Html.DropDownList("AvionV", null, "---Selecione el avion-----", new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Clase: </label>
+                                                            @Html.DropDownList("TipoV", null, "---Selecione la clase del vuelo-----", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Asientos disponibles: </label>
+                                                            <input type="number" class="form-control" id="AsientosDisp" min="1" readonly="readonly" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Fecha del vuelo:</label>
+                                                            <input type="date" id="fec_vuelo" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Hora salida: </label>
+                                                            <input type="time" id="h_salida" class="form-control" />
+                                                        </div>
+                                                        <label class="form-label text-dark">Lugar de salida</label>
+                                                        <div class="form-group">
+                                                            <label for="Pais_V" class="col-form-label text-dark">Pais: </label>
+                                                            @Html.DropDownList("Pais_V2", null, "---Selecione el pais-----", new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cboCiudadV2" class="form-label text-dark">Ciudad: </label>
+                                                            <select class="form-control" id="cboCiudadV2">
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cboAeropuertoV2" class="form-label text-dark">Aeropuerto: </label>
+                                                            <select class="form-control" id="cboAeropuertoV2" name="cboAeropuertoV" onchange="ShowSelected();">
+                                                            </select>
+                                                        </div>
+                                                        <input type="text" name="l_salida" id="l_salida" disabled="disabled" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Fecha de llegada: </label>
+                                                            <input type="date" id="fec_vuelo_llegada" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Hora de llegada</label>
+                                                            <input type="time" id="h_llegada" class="form-control" />
+                                                        </div>
+                                                        <label class="form-label text-dark">Lugar de llegada</label>
+                                                        <div class="form-group">
+                                                            <label for="Pais_V" class="col-form-label text-dark">Pais: </label>
+                                                            @Html.DropDownList("Pais_V", null, "---Selecione el pais-----", new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cboCiudadV" class="form-label text-dark">Ciudad: </label>
+                                                            <select class="form-control" id="cboCiudadV">
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cboAeropuertoV" class="form-label text-dark">Aeropuerto: </label>
+                                                            <select class="form-control" id="cboAeropuertoV" name="cboAeropuertoV">
+                                                            </select>
+                                                            <input type="hidden" id="id_aeropuerto" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label text-dark">Duracion del vuelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <a href="#" onclick="Diferencia_Horas();" class="btn btn-primary">Calcular</a><br /><br /><br />
+                                                            <input type="text" class="form-control" id="duracionVuelo" disabled="disabled" readonly="readonly" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="precioVuelo" class="form-label text-primary">Precio de vuelo: </label>
+                                                            <input type="text" class="form-control" id="precioVuelo" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="estadoVuelo" class="form-label text-dark">Estado del vuelo: </label>
+                                                            @Html.DropDownList("Estado_V", null, "---Selecione el estado del vuelo-----", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform bg-secondary-gradient">
+                            <br />
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="~/Assets/Img/Icons-Logos/avion.png" class="float-left" />
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary float-right" id="btnAdd_V" onclick="return Add_Vuelo();">Agregar</button>
+                                    <button type="button" class="btn bg-info float-right" id="btnUpdate_V" onclick="Update_Vuelo();">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

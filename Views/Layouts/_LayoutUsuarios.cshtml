@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/Assets/Img/Icons-Logos/avion.png">
+
+    <title>I FLY - Usuario </title>
+
+    <!-- Bootstrap 4.0-->
+
+    <link href="~/Assets/vendor_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap extend-->
+
+    <link href="~/Assets/css/bootstrap-extend.css" rel="stylesheet" />
+
+    <!-- Theme style -->
+    <link href="~/Assets/css/master_style.css" rel="stylesheet" />
+
+
+    <!-- Fab Admin skins -->
+
+    <link href="~/Assets/css/skins/_all-skins.css" rel="stylesheet" />
+
+    <!--Datatable-->
+    <link href="~/Assets/vendor_components/datatable/datatables.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="hold-transition skin-green sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="../../index.html" class="logo">
+                <!-- mini logo -->
+                <b class="logo-mini">
+
+                    <span class="light-logo"><img src="~/Assets/Img/Icons-Logos/avion.png" alt="logo" /></span>
+
+                    <span class="dark-logo"><img src="~/Assets/Img/Icons-Logos/avion.png" alt="logo" /></span>
+                </b>
+                <!-- logo-->
+                <span class="logo-lg">
+                    <span class="h1 text-white">I FLY</span>
+                </span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <div>
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+
+                </div>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account-->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Assets/Img/Icons-Logos/profile.png" class="user-image rounded-circle" alt="User Image" />
+                            </a>
+                            <ul class="dropdown-menu scale-up">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="~/Assets/Img/Icons-Logos/profile.png" class="float-left rounded-circle" alt="User Image" />
+
+                                    <p>
+                                        @HttpContext.Current.Session["Username"].ToString()
+                                        <small class="mb-5"></small>
+
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row no-gutters">                                        
+                                        <div role="separator" class="divider col-12"></div>
+                                        <div class="col-12 text-left">
+                                            <a href="@Url.Action("Logout","Login")"><i class="fa fa-power-off"></i> Logout</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar-->
+            <section class="sidebar">
+
+                <!-- sidebar menu-->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="user-profile treeview">
+                        <a href="index.html">
+                            <img src="~/Assets/Img/Icons-Logos/profile.png" alt="user" />
+                            <span class="h6">@HttpContext.Current.Session["Username"].ToString()</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Logout","Login")"><i class="fa fa-power-off mr-5"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="header nav-small-cap">MODULO DE VUELOS</li>
+                    <li class="treeview active">
+                        <a href="#">
+                            <i class="fa fa-plane"></i> <span>Reservas</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Reservas","Usuario")"><i class="fa fa-circle-thin"></i>Reservas</a></li>
+                            <li><a href="@Url.Action("Mis_Reservas","Usuario")"><i class="fa fa-circle-thin"></i>Mis reservas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1 class="text-center">
+                    @ViewBag.Title
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                @RenderBody()
+
+
+            </section>
+            <br />
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+            <div class="pull-right d-none d-sm-inline-block">
+                <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ciclo 02-2020</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Programacion II</a>
+                    </li>
+                </ul>
+            </div>
+            &copy; 2020 -<a href="#">Sistema de reserva de vuelos -</a> All Rights Reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+    <script src="~/Assets/vendor_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- popper -->
+    <script src="~/Assets/vendor_components/popper/dist/popper.min.js"></script>
+
+    <!-- Bootstrap 4.0-->
+    <script src="~/Assets/vendor_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="~/Assets/vendor_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- FastClick -->
+    <script src="~/Assets/vendor_components/fastclick/lib/fastclick.js"></script>
+
+    <!-- Fab Admin App -->
+    <script src="~/Assets/js/template.js"></script>
+
+    <!-- Fab Admin for demo purposes -->
+    <script src="~/Assets/js/demo.js"></script>
+
+    <!--Datatable-->
+    <script src="~/Assets/vendor_components/datatable/datatables.js"></script>
+
+
+    <script src="~/Scripts/moment.js"></script>
+</body>
+</html>

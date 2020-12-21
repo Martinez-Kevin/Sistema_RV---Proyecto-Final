@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "MODULO VUELOS - AVION";
+    Layout = "~/Views/Layouts/_LayoutAdministrador.cshtml";
+}
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/sweetalert2@10.js"></script>
+<script src="~/Funciones/Avion.js"></script>
+<div class="box">
+    <div class="box-body">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h2 class="h3 text-dark">Mantenimiento - Aviones</h2>
+                <button class="btn bg-primary float-right" data-toggle="modal" data-target="#modalAvion" onclick="clearTextBox_AV()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar avion</button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-striped bg-pale-info text-dark" id="aerolineaTabla">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Avion</th>
+                            <th>Velocidad crucero</th>
+                            <th>Altura maxima</th>
+                            <th>Capacidad de carga</th>
+                            <th>Sillas ejecutivas</th>
+                            <th>Sillas economicas</th>
+                            <th>Total de sillas</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+
+            <!-- Modal mantenimiento estados de vuelos -->
+            <div class="modal center-modal fade" id="modalAvion" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary">Mantenimiento | Avion</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" id="AvionID" disabled="disabled" />
+                                        <div class="form-group">
+                                            <label for="Avion" class="col-form-label">Avion: </label>
+                                            <input type="text" class="form-control" id="Avion" placeholder="Nombre del avion" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="velocidad_c" class="col-form-label">Velocidad: </label>
+                                            <input type="text" class="form-control" id="velocidad_c" placeholder="Velocidad crucero (Km/h)" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="altura_m" class="col-form-label">Altura: </label>
+                                            <input type="text" class="form-control" id="altura_m" placeholder="Altura maxima (Metros)" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="capacidad_c" class="col-form-label">Capacidad: </label>
+                                            <input type="text" class="form-control" id="capacidad_c" placeholder="Capacidad de carga (Kilogramos)" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cant_eje" class="col-form-label">Sillas ejecutivas: </label>
+                                            <input type="number" class="form-control" id="cant_eje" placeholder="Cantidad de sillas ejecutivas" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cant_eco" class="col-form-label">Sillas economicas: </label>
+                                            <input type="number" class="form-control" id="cant_eco" placeholder="Cantidad de sillas economicas" min="1" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-uniform">
+                            <button type="button" class="btn btn-primary" id="btnAdd_AV" onclick="return Add_Avion();">Agregar</button>
+                            <button type="button" class="btn bg-info" id="btnUpdate_AV" onclick="Update_Avion();">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
